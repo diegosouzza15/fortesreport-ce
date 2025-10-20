@@ -311,14 +311,14 @@ type
 var
   DefaultWindowState: TWindowState = wsMaximized;
   DefaultWindowBounds: TRect;
-  DefaultFormStyle: TFormStyle = fsNormal;
+  DefaultFormStyle: TFormStyle = fsMDIChild;//fsNormal
   DefaultShowModal: Boolean = False;
   DefaultPosition: TPosition = poScreenCenter;
   DefaultBorderIcons: TBorderIcons = [biSystemMenu, biMinimize, biMaximize];
   DefaultHelpFile: string = '';
   DefaultHelpContext: Integer = 0;
   DefaultCaption: string = '';
-  DefaultZoomFactor: Double = 100;
+  DefaultZoomFactor: Double = 150;
   SentToPrinter: Boolean = False;
   OnCreatePreviewForm: TOnCreatePreviewFormProc = nil;
   ShowPreviewOnWindowsTaskBar: Boolean = False;
@@ -347,7 +347,7 @@ implementation
 uses VCLCom;
 {$endif}
 
-///{$R *.dfm}
+{$R *.dfm}
 
 var
   SetupInstance: TRLPreviewSetup = nil;

@@ -65,7 +65,8 @@ uses
   {$Else}
    Graphics, Controls, Forms, Dialogs, StdCtrls, Buttons,
   {$EndIf}
-  RLFilters, RLConsts, RLTypes, RLUtils, RLComponentFactory;
+  RLFilters, RLConsts, RLTypes, RLUtils, RLComponentFactory, RLPDFFilter,
+  RLXLSFilter, RLXLSXFilter;
 
 type
   TRLSaveRange = (rprAllPages, rprSelection, rprPageNums);
@@ -87,6 +88,8 @@ type
     ComboBoxFilters: TComboBox;
     SpeedButtonLookup: TSpeedButton;
     SaveDialog: TSaveDialog;
+    RLFilterPDF: TRLPDFFilter;
+    RLFilterXLSX: TRLXLSXFilter;
     procedure EditFromPageChange(Sender: TObject);
     procedure SpeedButtonLookupClick(Sender: TObject);
     procedure ButtonSaveClick(Sender: TObject);
@@ -124,7 +127,7 @@ type
 
 implementation
 
-//{$R *.DFM}
+{$R *.DFM}
 
 // UTILS
 
@@ -421,6 +424,20 @@ begin
     Name := 'SaveDialog';
     Left := 340;
     Top := 80;
+  end;
+  TRLComponentFactory.CreateComponent(TRLPDFFilter, Self, RLFilterPDF);
+  with RLFilterPDF do
+  begin
+    Name := 'RLFilterPDF';
+    Left := 340;
+    Top := 40;
+  end;
+  TRLComponentFactory.CreateComponent(TRLXLSXFilter, Self, RLFilterXLSX);
+  with RLFilterXLSX do
+  begin
+    Name := 'RLFilterXLSX';
+    Left := 300;
+    Top := 40;
   end;
   //
   Caption := GetLocalizeStr(LocaleStrings.LS_SaveStr);

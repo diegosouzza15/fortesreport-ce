@@ -49,8 +49,6 @@
 {@unit RLPDFFilter - Implementação do filtro para criação de arquivos PDF. }
 unit RLPDFFilter;
 
-{$Q-}
-{$R-}
 interface
 
 uses

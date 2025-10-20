@@ -79,7 +79,7 @@ uses
   {$EndIf}
   maskutils,
   RLMetaFile, RLFeedBack, RLParser, RLFilters, RLConsts, RLUtils,
-  RLPrintDialog, RLPreviewForm, RLPreview,
+  RLPrintDialog, RLPreviewForm, RLPreview, RLPDFFilter,
   RLTypes, RLPrinters;
 
 type
@@ -3459,7 +3459,7 @@ type
     FCompositeOptions: TRLCompositeOptions;
     FNextReportState: TNextReportState;
     FOnPrepareError: TRLPrepareErrorEvent;
-
+    FPDFFilterDefault: TRLPDFFilter;
     // Bobina
     FUnlimitedHeight: Boolean;
 
@@ -13259,6 +13259,7 @@ begin
   FAdjustableMargins := False;
   FPreviewOptions := nil;
   FCompositeOptions := nil;
+  FPDFFilterDefault := nil;
   FForcePrepare := True;
 
   FillChar(DialogParams, SizeOf(DialogParams), 0);
@@ -13268,6 +13269,8 @@ begin
   FPageSetup := TRLPageSetup.Create(Self);
   FPreviewOptions := TRLPreviewOptions.Create(Self);
   FCompositeOptions := TRLCompositeOptions.Create(Self);
+  FPDFFilterDefault := TRLPDFFilter.Create(Self);
+  DefaultFilter := FPDFFilterDefault;
 
   inherited Create(AOwner);
   // customization
@@ -13292,6 +13295,7 @@ begin
   FreeObj(FPageSetup);
   FreeObj(FPreviewOptions);
   FreeObj(FCompositeOptions);
+  FreeObj(FPDFFilterDefault);
 
   inherited;
 end;
